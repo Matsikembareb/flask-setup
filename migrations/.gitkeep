@@ -1,0 +1,5 @@
+# Flask-Migrate will populate this directory when you run:
+#   flask db init
+#   flask db migrate -m "initial migration"
+#   flask db upgrade
+

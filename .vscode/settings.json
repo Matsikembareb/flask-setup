@@ -1,0 +1,15 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "python.analysis.extraPaths": ["${workspaceFolder}"],
+    "cSpell.words": [
+        "smorest",
+        "flaskenv",
+        "gunicorn",
+        "sqlalchemy",
+        "werkzeug",
+        "marshmallow",
+        "CORS",
+        "alembic"
+    ]
+}
+

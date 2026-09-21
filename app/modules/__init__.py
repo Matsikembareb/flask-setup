@@ -1,1 +1,1 @@
-"""Blueprint package for the powervision app."""
+"""Blueprint modules for this Flask application."""
