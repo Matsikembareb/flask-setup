@@ -47,7 +47,7 @@ def setup_error_logging(app: Flask) -> None:
             mailhost=(app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
             fromaddr=app.config['MAIL_FROM'],
             toaddrs=app.config['ADMINS'],
-            subject=f"Application Error [{os.environ.get('FLASK_ENV', 'unknown')}]",
+            subject=f"Application Error [{os.environ.get('APP_ENV', 'development')}]",
             credentials=(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD']),
             secure=() if app.config['MAIL_USE_TLS'] else None,
         )

@@ -78,12 +78,12 @@ def get_config_by_name(config=None):
     ----------
     config : str or None
         ``'development'``, ``'testing'``, or ``'production'``.
-        When ``None`` (default) the value is read from ``FLASK_ENV``
+        When ``None`` (default) the value is read from ``APP_ENV``
         at call time — not at import time — avoiding stale defaults.
         Falls back to ``DevelopmentConfig`` when the value is unrecognised.
     """
     if config is None:
-        config = os.environ.get('FLASK_ENV')
+        config = os.environ.get('APP_ENV', 'development')
     configs = {
         'development': DevelopmentConfig,
         'production': ProductionConfig,

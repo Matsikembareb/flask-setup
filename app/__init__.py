@@ -22,7 +22,7 @@ def create_app(env=None) -> Flask:
     app = Flask(__name__)
 
     # Resolve the config:
-    #   None          → get_config_by_name() reads FLASK_ENV
+    #   None          → get_config_by_name() reads APP_ENV
     #   string        → get_config_by_name(string) maps to the right class
     #   config object → used directly
     if env is None:

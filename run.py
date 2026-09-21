@@ -1,6 +1,6 @@
 from app import create_app
 
-# Module-level app used by gunicorn and `flask run` — reads FLASK_ENV.
+# Module-level app used by gunicorn and `flask run` — reads APP_ENV.
 # sys.argv is NOT read here so gunicorn's own arguments can't interfere.
 app = create_app()
 
@@ -13,7 +13,7 @@ if __name__ == '__main__':
         nargs='?',                                          # optional positional arg
         default=None,
         choices=['development', 'production', 'testing'],
-        help='Environment to run in. Overrides FLASK_ENV when provided.',
+        help='Environment to run in. Overrides APP_ENV when provided.',
     )
     args = parser.parse_args()
 

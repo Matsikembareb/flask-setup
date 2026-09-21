@@ -7,6 +7,6 @@ services:
     ports:
       - "5000:5000"
     env_file:
-      - .env           # create from .flaskenv — fill in real production secrets
+      - .env           # fill in real production secrets; never commit this file
     environment:
-      - FLASK_ENV=production
+      - APP_ENV=production

@@ -19,11 +19,11 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Create a `.env` file in this directory when you need custom settings. Common
-variables include:
+Copy `.env.example` to `.env` and set your application values. Keep `.env`
+private because it can contain secrets. Common variables include:
 
 ```dotenv
-FLASK_ENV=development
+APP_ENV=development
 SECRET_KEY=change-me
 JWT_SECRET_KEY=change-me
 DATABASE_URL=sqlite:///development.db
@@ -61,12 +61,12 @@ The project is compatible with `flask run` through the `app` object exported by
 flask --app wsgi run
 ```
 
-To select an environment, set `FLASK_ENV` in `.env` or in the shell:
+To select an application configuration, set `APP_ENV` in `.env` or in the shell:
 
 ```bash
-FLASK_ENV=development flask --app wsgi run --debug
-FLASK_ENV=testing flask --app wsgi run
-FLASK_ENV=production flask --app wsgi run
+APP_ENV=development flask --app wsgi run --debug
+APP_ENV=testing flask --app wsgi run
+APP_ENV=production flask --app wsgi run
 ```
 
 `flask run` uses `127.0.0.1:5000` by default. To expose the server on all
@@ -96,7 +96,10 @@ Create a `.env` file with production values, then start the service:
 docker compose up --build
 ```
 
-The container runs Gunicorn on port `5000` and uses `FLASK_ENV=production`.
+The container runs Gunicorn on port `5000` and uses `APP_ENV=production`.
+
+`.flaskenv` is committed with non-secret Flask CLI settings such as
+`FLASK_APP` and `FLASK_DEBUG`. It is not a replacement for `.env`.
 
 ## Endpoints
 
