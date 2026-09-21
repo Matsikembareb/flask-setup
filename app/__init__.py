@@ -13,15 +13,11 @@ api = Api()
 
 
 def create_app(env=None) -> Flask:
-    """Create and configure the Flask application.
+    """Create the Flask app using the selected environment configuration.
 
-    Parameters
-    ----------
-    env : str or config object or None
-        Controls which configuration is loaded, in order of priority:
-
-        ``run.py`` passes ``env`` from argparse so you can do:
-            python run.py production   without touching ``.flaskenv``.
+    ``env`` may be ``None``, a config name, or a config object. ``run.py``
+    passes config names such as ``development``, ``production``, or
+    ``testing``.
     """
     app = Flask(__name__)
 
@@ -37,6 +33,14 @@ def create_app(env=None) -> Flask:
         config = env
 
     app.config.from_object(config)
+
+    # Guard: production must have a real database URL — no SQLite fallback
+    if not app.config.get('TESTING') and not app.config.get('DEBUG'):
+        if not app.config.get('SQLALCHEMY_DATABASE_URI'):
+            raise RuntimeError(
+                'DATABASE_URL is not set. Production requires a real database. '
+                'Set DATABASE_URL in your environment or .env file.'
+            )
 
     # Logging — rotating file handler + optional SMTP (skipped when TESTING=True)
     setup_error_logging(app)

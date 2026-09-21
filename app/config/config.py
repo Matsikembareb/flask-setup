@@ -68,15 +68,22 @@ class TestingConfig(BaseConfig):
 class ProductionConfig(BaseConfig):
     """Production configuration."""
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///production.db')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')  # validated in create_app
 
 
-def get_config_by_name(config=os.environ.get('FLASK_ENV')):
+def get_config_by_name(config=None):
     """Return the config object matching the given environment name.
 
-    Accepts a string ('development', 'testing', 'production') or
-    falls back to DevelopmentConfig when the value is unrecognised.
+    Parameters
+    ----------
+    config : str or None
+        ``'development'``, ``'testing'``, or ``'production'``.
+        When ``None`` (default) the value is read from ``FLASK_ENV``
+        at call time — not at import time — avoiding stale defaults.
+        Falls back to ``DevelopmentConfig`` when the value is unrecognised.
     """
+    if config is None:
+        config = os.environ.get('FLASK_ENV')
     configs = {
         'development': DevelopmentConfig,
         'production': ProductionConfig,

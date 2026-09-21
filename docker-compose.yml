@@ -1,10 +1,12 @@
 services:
   web:
     build: .
-    command: gunicorn --bind 0.0.0.0:5000 app.wsgi:app
+    command: gunicorn --bind 0.0.0.0:5000 wsgi:app
     volumes:
       - .:/app
     ports:
       - "5000:5000"
+    env_file:
+      - .env           # create from .flaskenv — fill in real production secrets
     environment:
       - FLASK_ENV=production

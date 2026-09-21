@@ -6,3 +6,24 @@ __pycache__
 *.sqlite
 *.log
 *.env
+
+# Development environment — not needed in the image
+.venv/
+.flaskenv
+
+# Version control
+.git/
+.gitignore
+
+# VS Code settings
+.vscode/
+
+# Test artefacts
+.pytest_cache/
+app/tests/
+
+# Migrations are run separately against the live DB
+migrations/
+
+# Local instance folder (SQLite dev databases)
+instance/
