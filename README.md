@@ -125,3 +125,7 @@ wsgi.py         Gunicorn/WSGI entry point
 
 To add an API feature, create a blueprint under `app/modules/` and register it
 from `app/__init__.py`.
+
+## License
+
+MIT. See [LICENSE](LICENSE): use it in your own projects, free or commercial, as long as you keep the copyright notice.
